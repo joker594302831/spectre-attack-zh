@@ -33,7 +33,7 @@ Victim code.(受害者——spectre被利用的地方)
 ********************************************************************/
 unsigned int array1_size = 16;                                               // 定义array1的大小
 uint8_t array1[16] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}; // 定义array1
-uint8_t array2[256 * 512];                                                   // 侧信道接收者(cache一次取一页,大小为512B,所以每个接收点要隔512B)
+uint8_t array2[256 * 512]; // 侧信道接收者(cache一次取一页,大小为512B,所以每个接收点要隔512B)
 
 char *secret = "The Magic Words are Squeamish Ossifrage."; // 测试读取的数据
 
@@ -166,7 +166,8 @@ void readMemoryByte(size_t malicious_x, uint8_t value[2], int score[2])
             */
             time2 = __rdtscp(&junk) - time1;
             /*
-                根据是否小于时间阈值判断是否命中,同时应注意,mix_i不应该等于分支训练使用的x值,因为在训练中它一定被缓存过了
+                根据是否小于时间阈值判断是否命中,
+                同时应注意,mix_i不应该等于分支训练使用的x值,因为在训练中它一定被缓存过了
             */
             if (time2 <= CACHE_HIT_THRESHOLD && mix_i != training_x)
                 results[mix_i]++; // 命中,mix_i为秘密值的ascii码,results对应位置+1

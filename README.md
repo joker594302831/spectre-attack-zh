@@ -35,7 +35,7 @@ unsigned int array1_size = 16;                                               // 
 uint8_t array1[16] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}; // 定义array1
 uint8_t array2[256 * 512]; // 侧信道接收者(cache一次取一页,大小为512B,所以每个接收点要隔512B)
 
-char *secret = "The Magic Words are Squeamish Ossifrage."; // 测试读取的数据
+const char *secret = "The Magic Words are Squeamish Ossifrage."; // 测试读取的数据
 
 /*
  * 侧信道发送者
